@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Másodfokú Egyenlet Megoldóképlete</title>
+    <style>
+        body {
+            font-family:'Times New Roman', Sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #00c3ff;
+            color: #333;
+        }
+        h1 {
+            color: #006eff;
+            text-align: center;
+        }
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgb(255, 255, 255);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .formula {
+            font-size: 24px;
+            color: #007bff;
+            text-align: center;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        input[type="number"], input[type="button"] {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+            border-radius: 5px;
+        }
+        .result {
+            font-size: 20px;
+            font-weight: bold;
+            color: #d9534f;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content">
+        <h1>Másodfokú Egyenlet Megoldóképlete</h1>
+        <div class="section">
+            <h2>Mi az a másodfokú egyenlet?</h2>
+            <p>A másodfokú egyenlet általános formája:</p>
+            <p class="formula">ax² + bx + c = 0</p>
+            <p>Az egyenlet megoldásához a következő képletet használjuk, amelyet "másodfokú megoldóképlet"-nek hívunk:</p>
+            <p class="formula">x = (-b ± √(b² - 4ac)) / 2a</p>
+        </div>
+
+        <div class="section">
+            <h2>Mi a szerepe az egyes változóknak?</h2>
+            <ul>
+                <li><strong>a</strong>: Az x² együtthatója.</li>
+                <li><strong>b</strong>: Az x együtthatója.</li>
+                <li><strong>c</strong>: A konstans tag.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Hogyan alkalmazzuk a megoldóképletet?</h2>
+            <p>Ha ismerjük az a, b és c értékeket, egyszerűen beírhatjuk őket a fenti képletbe, hogy meghatározzuk az egyenlet gyökeit. Az eredmény két lehetséges érték lehet: a "+" és a "−" miatt két különböző megoldás is létezik, ha a diszkrimináns (b² - 4ac) pozitív. Ha a diszkrimináns nulla, akkor egyetlen gyök létezik, míg ha negatív, akkor komplex gyökök vannak.</p>
+        </div>
+
+        <div class="section">
+            <h2>Hol alkalmazzák a másodfokú egyenletet?</h2>
+            <p>A másodfokú egyenletek széles körben előfordulnak a matematikában, fizikában, mérnöki tudományokban és más tudományos területeken:</p>
+            <ul>
+                <li><strong>Fizika:</strong> A mozgásegyenletek, például a gyorsulás, vagy a szabad esés számításakor.</li>
+                <li><strong>Gazdaságtudomány:</strong> Különböző optimalizálási feladatokban.</li>
+                <li><strong>Mérnöki alkalmazások:</strong> A mechanikai rendszerek tervezésekor, például terheléses egyenletek megoldásakor.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Számítsuk ki a gyököket!</h2>
+            <label for="a">a (x² együttható):</label>
+            <input type="number" id="a" placeholder="Írd be az a értéket" />
+
+            <label for="b">b (x együttható):</label>
+            <input type="number" id="b" placeholder="Írd be a b értéket" />
+
+            <label for="c">c (konstans):</label>
+            <input type="number" id="c" placeholder="Írd be a c értéket" />
+
+            <input type="button" value="Számold ki a gyököket!" class="btn" onclick="calculateRoots()" />
+
+            <div id="result" class="result"></div>
+        </div>
+    </div>
+
+    <script>
+        function calculateRoots() {
+            const a = parseFloat(document.getElementById("a").value);
+            const b = parseFloat(document.getElementById("b").value);
+            const c = parseFloat(document.getElementById("c").value);
+
+            if (isNaN(a) || isNaN(b) || isNaN(c)) {
+                document.getElementById("result").innerText = "Kérlek, adj meg érvényes számokat!";
+                return;
+            }
+
+            const discriminant = (b * b) - (4 * a * c);
+
+            if (discriminant > 0) {
+                const root1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+                const root2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+                document.getElementById("result").innerText = `A gyökök: x1 = ${root1.toFixed(2)}, x2 = ${root2.toFixed(2)}`;
+            } else if (discriminant === 0) {
+                const root = -b / (2 * a);
+                document.getElementById("result").innerText = `A gyök: x = ${root.toFixed(2)}`;
+            } else {
+                const realPart = -b / (2 * a);
+                const imaginaryPart = Math.sqrt(-discriminant) / (2 * a);
+                document.getElementById("result").innerText = `Nincs megoldás mert a diszkrimináns negatív`;
+            }
+        }
+    </script>
+    
+</body>
+</html>
