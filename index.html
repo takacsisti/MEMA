@@ -127,10 +127,17 @@
             if (discriminant > 0) {
                 const root1 = (-b + Math.sqrt(discriminant)) / (2 * a);
                 const root2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+
+            if (a == 0) {
+            document.getElementById("result").innerText = "Nincs megoldás, mert a = 0 esetén nem másodfokú egyenletről van szó.";
+            return;
+            }
+
                 document.getElementById("result").innerText = `A gyökök: x1 = ${root1.toFixed(2)}, x2 = ${root2.toFixed(2)}`;
             } else if (discriminant === 0) {
                 const root = -b / (2 * a);
                 document.getElementById("result").innerText = `A gyök: x = ${root.toFixed(2)}`;
+
             } else {
                 const realPart = -b / (2 * a);
                 const imaginaryPart = Math.sqrt(-discriminant) / (2 * a);
